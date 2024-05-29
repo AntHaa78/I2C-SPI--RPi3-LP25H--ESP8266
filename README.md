@@ -1,5 +1,5 @@
 # Raspberry-Pi---SenseHat---I2C-SPI
-The goal of this project is to get familiar with I²C and SPI protocols in C language. Hence we will communicate with the LP25H sensor of SenseHat (slave) from Raspberry Pi 3 (master) and get the temperature and pressure value from the sensor.
+The goal of this project is to get familiar with I²C and SPI protocols in C language. Hence we will communicate with the LPS25H sensor of SenseHat (slave) from Raspberry Pi 3 (master) and get the temperature and pressure value from the sensor.
 
 ## **STEP1**:
 
@@ -22,7 +22,7 @@ Get addresses of devices and pin numbers(if needed) of RPi using I2C and SPI.
 
 To scan address range: `$sudo i2cdetect -y 1`
 Can also use sensehat documentation: https://pinout.xyz/pinout/sense_hat
--> LP25H sensor address is 0x5c on the i2c bus.
+-> LPS25H sensor address is 0x5c on the i2c bus.
 
 Pin numbers either via `$gpio readall`, or documentation of RPi. 
 
