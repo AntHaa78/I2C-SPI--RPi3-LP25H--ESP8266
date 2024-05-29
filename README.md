@@ -7,11 +7,14 @@ Check if these protocols are enabled on the Raspberry Pi(RPi), and if not enable
 
 `$lsmod | grep -e spi -e i2c` or `$ls /dev/i2c* /dev/spi*`. If nothing comes up they are disabled(was the case).
 
-#### Method 1: In terminal `$sudo raspi-config nonint get_i2c`, will return 1 if disabled. To enable, `$sudo raspi-config nonint do_i2c 0`. Same for spi.
+#### Method 1: 
+In terminal `$sudo raspi-config nonint get_i2c`, will return 1 if disabled. To enable, `$sudo raspi-config nonint do_i2c 0`. Same for spi.
 
-#### Method 2: Application Menu -> Preferences -> Raspberry configuration -> Interfaces -> Toggle I2C and SPI.
+#### Method 2: 
+Application Menu -> Preferences -> Raspberry configuration -> Interfaces -> Toggle I2C and SPI.
 
-#### Method 3: In terminal `$sudo raspi-config` and enable the protocols.
+#### Method 3: 
+In terminal `$sudo raspi-config` and enable the protocols.
 
 ## **STEP2**:
 
