@@ -16,6 +16,9 @@
 #define CTRL_REG2 0x21
 #define TEMP_OUT_L 0x2B
 #define TEMP_OUT_H 0x2C
+#define PRESS_OUT_XL 0x28
+#define PRESS_OUT_L 0x29
+#define PRESS_OUT_H 0x2A
 
 int main()
 {
@@ -46,22 +49,22 @@ int main()
 		close(i2c);
 		exit(1);
 	}
-	printf("Sensor loaded and ready!");
+	printf("Sensor loaded and ready!\n");
 	 
 	
 	// Power down/Clean start
 	i2c_smbus_write_byte_data(i2c, CTRL_REG1, 0x00);
 	
-    	//Turn on the pressure sensor, one shot configuration. BDU(block data update) on or off?  10000100 or 10000000? 0x84 or 0x80?
-    	i2c_smbus_write_byte_data(i2c, CTRL_REG1, 0x80);
+    //Turn on the pressure sensor, one shot configuration. BDU(block data update) on or off?  10000100 or 10000000? 0x84 or 0x80?
+    i2c_smbus_write_byte_data(i2c, CTRL_REG1, 0x80);
 
-    	//Run one-shot measurement (temperature and pressure), the set bit will be reset by the
-    	//~ * sensor itself after execution (self-clearing bit) 00000001
+    //Run one-shot measurement (temperature and pressure), the set bit will be reset by the
+    //~ * sensor itself after execution (self-clearing bit) 00000001
 
-   	i2c_smbus_write_byte_data(i2c, CTRL_REG2, 0x01);	
+    i2c_smbus_write_byte_data(i2c, CTRL_REG2, 0x01);	
     
-    	// wait for data to be written? 
-    	usleep(1000 * 100);
+    // wait for data to be written just in case?
+    usleep(1000 * 100);
     	
 	
 	// Temperature data
@@ -90,8 +93,15 @@ int main()
 	uint8_t press_out_h = 0;
 	uint8_t press_out_l = 0;
 	uint8_t press_out_xl = 0;
-	int test = 10;
-	printf(" \nBinary test %b", test);
+	uint32_t P_OUT = 0;
+	
+	press_out_h = i2c_smbus_read_byte_data(i2c, PRESS_OUT_H);
+	press_out_l = i2c_smbus_read_byte_data(i2c, PRESS_OUT_L);
+	press_out_xl = i2c_smbus_read_byte_data(i2c, PRESS_OUT_XL);
+	P_OUT = (press_out_h << 16) | (press_out_l << 8) | press_out_xl;
+	printf("\nThe measure of P_OUT is: %d", P_OUT);
+	printf("\nPressure is : %.2f hPa\n", (P_OUT/(float)4096));	
+	printf("Average atmospheric pressure is 1013 hPa");
 	
 	close(i2c);
 	return 0;
