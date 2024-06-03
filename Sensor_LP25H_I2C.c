@@ -184,10 +184,8 @@ void spi_com()
 
 	//---------------------------------------------------------------------------------------------------------------
 	// To send the command to take a measurement and read data we use struct spi_ioc_transfer (spidev.h)
-	// Need to find what is the command to take measurement (tried 0x84 / 0x01->0x09)
-	// need delay? Manual CS change HIGH/LOW?
-	// 2*8bits  for write? address  /command :  reg1 / 0x84 -> 00100000 10000100 -> turn on oneshotconfig
-	// take shot  reg2 / 0x01 -> 001000001 / 00000001
+	// Need to find what is the command to take measurement.
+	// Send command one by one in between CS HIGH/LOW.
 
 	uint8_t tx_buffer[6] = {0x20, 0x00, 0x20, 0x84, 0x21, 0x01}; // Currently NOT WORKING
 	uint8_t rx_buffer[2];
