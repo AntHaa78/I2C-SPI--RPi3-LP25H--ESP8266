@@ -9,8 +9,15 @@ OR
 
 Via VSCODE platformio extension
 
+
+Probems: Platformio can't find Python 3.10 despite installed. FIX -> sudo apt-get install python3-venv
+
+Problem:Upload speed in VScode. FIX -> ?
+
+
+
 Problem 1: Port greyed in Arduino IDE
-Solution: Stop braille daemons brltty
+FIX: Stop braille daemons brltty
 
 systemctl stop brltty-udev.service
 sudo systemctl mask brltty-udev.service
@@ -20,7 +27,7 @@ systemctl disable brltty.service
 
 
 Problem 2: Access to /dev/ttyUSB0 denied
-Solution (temporary): Give access 
+FIX (temporary): Give access 
 
 sudo chmod a+rw /dev/ttyUSB0
 
