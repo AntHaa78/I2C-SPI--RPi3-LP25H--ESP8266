@@ -1,33 +1,7 @@
-Instructions:
+Material used:
 
-ucontroller ESP8266 D1 Mini
+Microcontroller ESP8266 D1 Mini, BME 280 sensor (humidity, pressure, altitude, temperature), display ST7735S 0"96 80x160, tiny RTC DS1307, EEPROM AT24C02, microSD Card adapter, wires, breadboard, USB mini-USB cable.
 
-Install Arduino IDE/additional boards etc
-https://diyi0t.com/esp8266-wemos-d1-mini-tutorial/
+Using VSCODE platformio extension, linux OS.
 
-OR
-
-Via VSCODE platformio extension
-
-
-Probems: Platformio can't find Python 3.10 despite installed. FIX -> sudo apt-get install python3-venv
-
-Problem:Upload speed in VScode. FIX -> ?
-
-
-
-Problem 1: Port greyed in Arduino IDE
-FIX: Stop braille daemons brltty
-
-systemctl stop brltty-udev.service
-sudo systemctl mask brltty-udev.service
-systemctl stop brltty.service
-systemctl disable brltty.service
-
-
-
-Problem 2: Access to /dev/ttyUSB0 denied
-FIX (temporary): Give access 
-
-sudo chmod a+rw /dev/ttyUSB0
-
+Different small projects in C++ to make everything work together, mixing I2C and SPI.
